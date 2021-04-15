@@ -1,0 +1,33 @@
+<div class="ToDo">
+  <img class="Logo" src="/images/ember-logo.png" alt="Ember" />
+  <h1 class="ToDo-Header">Ember To Do</h1>
+  <div class="ToDo-Container">
+
+    <div class="ToDo-Content">
+      {{#each this.toDos as |item|}}
+        <ToDo::Item
+          @item={{item}}
+          @deleteItem={{this.deleteItem}}
+        />
+      {{/each}}
+    </div>
+
+    <div class="ToDoInput">
+      <Input
+        placeholder="I need to..."
+        onkeypress={{this.handleKeyPress}}
+        aria-label="ToDo text"
+        @type="text"
+        @value={{this.input}}
+      />
+      <button type="button" class="ToDo-Add" {{on "click" this.createNewToDoItem}}>+</button>
+    </div>
+
+    {{#if this.isErrorShown}}
+      <div class="ToDo-ErrorContainer">
+        <p>Please enter a todo!</p>
+      </div>
+    {{/if}}
+
+  </div>
+</div>
