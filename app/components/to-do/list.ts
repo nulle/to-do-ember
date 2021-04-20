@@ -34,10 +34,15 @@ export default class ToDoListComponent extends Component<Args> {
 
   @action
   deleteItem(item: ToDo) {
-    this.toDos = this.toDos.filter((toDo) => {
-      return item !== toDo;
+    return new Promise((resolve, _reject) => {
+      run.later(() => {
+        this.toDos = this.toDos.filter((toDo) => {
+          return item !== toDo;
+        });
+        this.logger.log('Deleted item');
+        resolve(true);
+      }, 3000);
     });
-    this.logger.log('Deleted item');
   }
 
   @action

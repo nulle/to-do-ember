@@ -5,14 +5,23 @@ import ToDo from '../../models-custom/to-do';
 
 interface Args {
   item: ToDo;
-  deleteItem: (item: ToDo) => void;
+  deleteItem: (item: ToDo) => Promise<void>;
 }
 
 export default class ToDoItemComponent extends Component<Args> {
 
+  isDeleting = false;
+
   @action
-  deleteItem() {
-    this.args.deleteItem(this.args.item);
+  async deleteItem() {
+
+    if (this.isDeleting) {
+      return;
+    }
+
+    this.isDeleting = true;
+    await this.args.deleteItem(this.args.item);
+    this.isDeleting = false;
   }
 
 }
