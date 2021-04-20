@@ -1,4 +1,6 @@
-<div class="ToDoItem">
+<div class="ToDoItem"
+  {{did-update this.titleUpdated @item.title}}
+>
   <p class="ToDoItem-Text">{{@item.title}}</p>
   <div role="button" class="ToDoItem-Delete" {{on "click" this.deleteItem}}>-</div>
 </div>

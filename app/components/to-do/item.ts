@@ -24,4 +24,9 @@ export default class ToDoItemComponent extends Component<Args> {
     this.isDeleting = false;
   }
 
+  @action
+  titleUpdated(): void {
+    console.log(`Title was updated to ${this.args.item.title}.`);
+  }
+
 }

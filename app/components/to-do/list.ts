@@ -63,4 +63,11 @@ export default class ToDoListComponent extends Component<Args> {
     this.logger.log('Created item');
   }
 
+  @action
+  shuffleTitles(): void {
+    this.toDos.forEach((toDo) => {
+      toDo.title = toDo.title.split('').sort(() => (Math.random() > 0.5) ? 1 : -1).join('');
+    });
+  }
+
 }

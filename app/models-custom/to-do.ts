@@ -1,3 +1,4 @@
+import { tracked } from '@glimmer/tracking';
 
 export default class ToDo {
 
@@ -5,6 +6,6 @@ export default class ToDo {
     this.title = title;
   }
 
-  title: string;
+  @tracked title: string;
 
 }
