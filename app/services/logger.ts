@@ -10,4 +10,8 @@ export default class LoggerService extends Service {
     this.loggedCount++;
   }
 
+  get loggedCountText(): string {
+    return `Logged count: ${this.loggedCount}`;
+  }
+
 }
