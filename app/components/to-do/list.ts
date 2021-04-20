@@ -2,12 +2,16 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { run } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 import ToDo from '../../models-custom/to-do';
+import Logger from '../../services/logger';
 
 interface Args {}
 
 export default class ToDoListComponent extends Component<Args> {
+
+  @service declare logger: Logger;
 
   @tracked toDos: ToDo[];
   @tracked input = '';
@@ -33,6 +37,7 @@ export default class ToDoListComponent extends Component<Args> {
     this.toDos = this.toDos.filter((toDo) => {
       return item !== toDo;
     });
+    this.logger.log('Deleted item');
   }
 
   @action
@@ -50,6 +55,7 @@ export default class ToDoListComponent extends Component<Args> {
     }
     this.toDos = this.toDos.concat(new ToDo(this.input));
     this.input = "";
+    this.logger.log('Created item');
   }
 
 }
